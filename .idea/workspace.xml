@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fd46952-d7db-4f87-96d0-7713fe473950" name="Changes" comment="requirements.txt">
-      <change afterPath="$PROJECT_DIR$/api/v1/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/v1/routers/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/v1/routers/notification_router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/v1/routers/payment_router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="2fd46952-d7db-4f87-96d0-7713fe473950" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/routers/partner_requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/routers/partner_requests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/routers/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/routers/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +103,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747516823424</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit">
+      <option name="closed" value="true" />
+      <created>1748972608609</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748972608609</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit">
+      <option name="closed" value="true" />
+      <created>1748972646807</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748972646807</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +136,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="основные функции API&#10;создание, удаление для таблиц&#10;работает автоматическое удаление заявок" />
     <MESSAGE value="requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="requirements.txt" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
 </project>
