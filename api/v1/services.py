@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+import requests
 from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 from .models import User, Game, UserGame, PartnerRequest, UserLog
@@ -68,6 +68,21 @@ class UserService:
         db.refresh(user)
         return user
 
+    def downgrade_expired_premium_users(self, db: Session):
+        now = datetime.now()
+        users_to_downgrade = db.query(User).filter(
+            User.account_status == "premium",
+            User.premium_expires_at.is_not(None),
+            User.premium_expires_at < now
+        ).all()
+
+        for user in users_to_downgrade:
+            user.account_status = "standard"
+            user.premium_expires_at = None
+
+        if users_to_downgrade:
+            db.commit()
+
 class GameService:
     def create_game(self, db: Session, game_data: GameCreateRequest) -> Game:
         new_game = Game(**game_data.dict())
@@ -112,8 +127,22 @@ class UserGameService:
 
 class PartnerRequestService:
     def create_partner_request(self, db: Session, request_data: PartnerRequestCreateRequest) -> PartnerRequest:
+        user = db.query(User).get(request_data.user_id)
+        if not user:
+            raise ValueError("User not found")
+
+        current_requests_count = user.current_partner_requests  # <-- используем поле модели
+
+        if user.account_status == "standard" and current_requests_count >= 2:
+            raise ValueError("Standard account can have at most 2 partner requests")
+        elif user.account_status == "premium" and current_requests_count >= 10:
+            raise ValueError("Premium account can have at most 10 partner requests")
+
         new_request = PartnerRequest(**request_data.dict())
         db.add(new_request)
+
+        # Увеличиваем счетчик
+        user.current_partner_requests += 1
         db.commit()
         db.refresh(new_request)
         return new_request
@@ -122,6 +151,13 @@ class PartnerRequestService:
         request = db.query(PartnerRequest).filter(PartnerRequest.id == request_id).first()
         if not request:
             raise ValueError("PartnerRequest not found")
+
+        user = db.query(User).get(request.user_id)
+        if user:
+            user.current_partner_requests -= 1
+            if user.current_partner_requests < 0:
+                user.current_partner_requests = 0
+
         db.delete(request)
         db.commit()
 
@@ -149,3 +185,19 @@ class UserLogService:
         db.commit()
         db.refresh(new_log)
         return new_log
+
+
+class NotificationService:
+    def __init__(self, bot_token: str):
+        self.bot_token = bot_token
+        self.base_url = f"https://api.telegram.org/bot{bot_token}"
+
+    def send_message(self, chat_id: str, text: str):
+        url = f"{self.base_url}/sendMessage"
+        payload = {
+            "chat_id": chat_id,
+            "text": text,
+            "parse_mode": "Markdown"
+        }
+        response = requests.post(url, json=payload)
+        return response.json()

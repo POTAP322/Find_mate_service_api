@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 3000
     DATABASE_URL: str = "mysql+pymysql://root:gh245hyt@localhost/findmate_db"
+    TELEGRAM_BOT_TOKEN: str = "token"
 
     class Config:
         env_file = ".env"

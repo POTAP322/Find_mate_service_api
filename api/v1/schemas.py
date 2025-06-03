@@ -7,6 +7,11 @@ class AccountStatus(str, Enum):
     premium = "premium"
     standard = "standard"
 
+class PremiumDuration(str, Enum):
+    day = "day"
+    week = "week"
+    forever = "forever"
+
 class Platform(str, Enum):
     PC = "PC"
     Console = "Console"
@@ -88,3 +93,7 @@ class UserUpdateAccountStatusRequest(BaseModel):
 
 class UserUpdateCurrentPartnerRequestsRequest(BaseModel):
     current_partner_requests: int
+
+class UpgradeRequest(BaseModel):
+    user_id: int
+    duration: PremiumDuration
